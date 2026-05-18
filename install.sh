@@ -13,15 +13,6 @@ fi
 if [[ "$OS" == "mac" ]]; then
   command -v brew &>/dev/null ||
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  brew update --quiet
-  brew install \
-    fzf ripgrep bat eza zoxide tldr git-delta neovim tmux pre-commit ruff \
-    kubectl kubectx helm k9s minikube stern argocd kubelogin grpcurl \
-    2>/dev/null ||
-    brew upgrade \
-      fzf ripgrep bat eza zoxide tldr git-delta neovim tmux pre-commit ruff \
-      kubectl kubectx helm k9s minikube stern argocd kubelogin grpcurl \
-      2>/dev/null || true
 else
   command -v brew &>/dev/null || {
     NONINTERACTIVE=1 \
@@ -29,16 +20,10 @@ else
   }
 
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  brew update --quiet
-  brew install \
-    fzf ripgrep bat eza zoxide tldr git-delta neovim tmux pre-commit ruff \
-    kubectl kubectx helm k9s minikube stern argocd kubelogin grpcurl \
-    2>/dev/null ||
-    brew upgrade \
-      fzf ripgrep bat eza zoxide tldr git-delta neovim tmux pre-commit ruff \
-      kubectl kubectx helm k9s minikube stern argocd kubelogin grpcurl \
-      2>/dev/null || true
 fi
+
+brew update --quiet
+HOMEBREW_BUNDLE_NO_LOCK=1 brew bundle --file="$DOTFILES/Brewfile"
 
 if [[ -d "$HOME/.oh-my-zsh" ]]; then
   "$HOME/.oh-my-zsh/tools/upgrade.sh" 2>/dev/null || true
