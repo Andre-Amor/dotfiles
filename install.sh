@@ -15,11 +15,11 @@ if [[ "$OS" == "mac" ]]; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   brew update --quiet
   brew install \
-    fzf ripgrep bat eza zoxide tldr git-delta neovim pre-commit ruff \
+    fzf ripgrep bat eza zoxide tldr git-delta neovim tmux pre-commit ruff \
     kubectl kubectx helm k9s minikube stern argocd kubelogin grpcurl \
     2>/dev/null ||
     brew upgrade \
-      fzf ripgrep bat eza zoxide tldr git-delta neovim pre-commit ruff \
+      fzf ripgrep bat eza zoxide tldr git-delta neovim tmux pre-commit ruff \
       kubectl kubectx helm k9s minikube stern argocd kubelogin grpcurl \
       2>/dev/null || true
 else
@@ -31,11 +31,11 @@ else
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   brew update --quiet
   brew install \
-    fzf ripgrep bat eza zoxide tldr git-delta neovim pre-commit ruff \
+    fzf ripgrep bat eza zoxide tldr git-delta neovim tmux pre-commit ruff \
     kubectl kubectx helm k9s minikube stern argocd kubelogin grpcurl \
     2>/dev/null ||
     brew upgrade \
-      fzf ripgrep bat eza zoxide tldr git-delta neovim pre-commit ruff \
+      fzf ripgrep bat eza zoxide tldr git-delta neovim tmux pre-commit ruff \
       kubectl kubectx helm k9s minikube stern argocd kubelogin grpcurl \
       2>/dev/null || true
 fi
