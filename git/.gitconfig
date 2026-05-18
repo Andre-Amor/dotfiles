@@ -13,8 +13,9 @@
 
 [diff]
   colorMoved = default
-[user]
-	email = ramorstem2022@gmail.com
-	name = Andre Amor
+
+[include]
+  path = ~/.gitconfig.identity
+
 [push]
-	autoSetupRemote = true
+  autoSetupRemote = true
