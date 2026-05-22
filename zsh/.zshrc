@@ -79,6 +79,7 @@ _precommit_autoinstall
 
 alias pc="pre-commit run --all-files"
 alias gl="git log"
+alias gds="git diff --staged"
 
 
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
