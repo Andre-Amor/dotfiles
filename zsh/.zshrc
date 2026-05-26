@@ -29,6 +29,9 @@ alias cat="bat --paging=never --plain"
 # clear
 alias c="clear"
 
+# claude
+alias cc="claude"
+
 # fzf & ripgrep
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
