@@ -5,13 +5,6 @@ fi
 
 export ZSH="$HOME/.oh-my-zsh"
 
-# homebrew
-if [[ -d /home/linuxbrew/.linuxbrew ]]; then
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-elif [[ -x /opt/homebrew/bin/brew ]]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(
