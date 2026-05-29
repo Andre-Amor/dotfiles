@@ -59,6 +59,7 @@ fi
 
 ln -sf "$DOTFILES/zsh/.zshrc" "$HOME/.zshrc"
 ln -sf "$DOTFILES/zsh/.zshenv" "$HOME/.zshenv"
+ln -sf "$DOTFILES/zsh/.zprofile" "$HOME/.zprofile"
 ln -sf "$DOTFILES/zsh/.p10k.zsh" "$HOME/.p10k.zsh"
 ln -sf "$DOTFILES/git/.gitconfig" "$HOME/.gitconfig"
 ln -sf "$DOTFILES/nvim" "$HOME/.config/nvim"
@@ -80,4 +81,4 @@ if [[ ! -e "$HOME/.gitconfig.identity" ]]; then
   done
 fi
 
-echo "Installed! Restart terminal or run: source ~/.zshrc"
+echo "Installed! Restart terminal or run: exec zsh -l"
