@@ -4,22 +4,6 @@ dotfiles!
 
 Written for macOS and Ubuntu.
 
-## Tools
-- OMZ + p10k
-- fzf
-- ripgrep
-- bat
-- eza
-- zoxide
-- delta
-- tldr
-- kubectl
-- kubectx / kubens
-- helm
-- k9s
-- minikube
-- stern
-- argocd
 
 ## Installation
 
