@@ -73,16 +73,16 @@ if [[ ! -e "$HOME/.gitconfig.identity" ]]; then
   PS3="Laptop identity: "
   select identity in personal work; do
     case "$identity" in
-      personal|work)
-        ln -sf "$DOTFILES/git/.gitconfig.$identity" "$HOME/.gitconfig.identity"
-        echo "Using Git identity: $identity"
-        break
-        ;;
-      *)
-        echo "Please choose 1 or 2."
-        ;;
+    personal | work)
+      ln -sf "$DOTFILES/git/.gitconfig.$identity" "$HOME/.gitconfig.identity"
+      echo "Using Git identity: $identity"
+      break
+      ;;
+    *)
+      echo "Please choose 1 or 2."
+      ;;
     esac
   done
 fi
 
-echo "Installed! Restart terminal or run: exec zsh -l"
+echo "Installed! Restart terminal or run: \`exec zsh -l\`"
