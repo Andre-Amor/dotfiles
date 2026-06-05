@@ -7,6 +7,9 @@ typeset -U path PATH
 
 path=("$HOME/.local/bin" $path)
 
+# rust toolchain
+[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+
 # homebrew
 if [[ -d /home/linuxbrew/.linuxbrew ]]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
