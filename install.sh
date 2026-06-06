@@ -46,6 +46,10 @@ P10K="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 [[ -d "$P10K" ]] && git -C "$P10K" pull --quiet ||
   git clone --depth=1 https://github.com/romkatv/powerlevel10k "$P10K"
 
+# Rust toolchain
+command -v cargo &>/dev/null ||
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
+
 # Claude Code
 command -v claude &>/dev/null ||
   curl -fsSL https://claude.ai/install.sh | bash
