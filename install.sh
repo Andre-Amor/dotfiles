@@ -54,6 +54,10 @@ command -v cargo &>/dev/null ||
 command -v claude &>/dev/null ||
   curl -fsSL https://claude.ai/install.sh | bash
 
+# Codex
+command -v codex &>/dev/null ||
+  npm install -g @openai/codex
+
 # Make sure the nvim submodule is current
 git -C "$DOTFILES" submodule update --init --recursive --remote nvim
 
