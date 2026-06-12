@@ -59,7 +59,7 @@ _cached_completion() {
 if command -v kubectl &>/dev/null; then
   _cached_completion kubectl
   alias k="kubectl"
-  compdef __start_kubectl k
+  compdef _kubectl k
 
   alias kgp="kubectl get pods"
   alias kgs="kubectl get svc"
