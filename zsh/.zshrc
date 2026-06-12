@@ -39,9 +39,25 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 # zoxide
 eval "$(zoxide init zsh)"
 
+# Source a command's completion script from a cache file instead of
+# regenerating it on every shell start. Compares against the command's
+# symlink rather than its target because brew rewrites the symlink on
+# upgrade while bottle binaries keep their older build timestamps.
+_cached_completion() {
+  local cmd="$1"
+  local cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/${cmd}-completion.zsh"
+  zmodload -F zsh/stat b:zstat
+  if [[ ! -s "$cache" ]] || (( $(zstat -L +mtime "$(command -v "$cmd")") > $(zstat +mtime "$cache") )); then
+    mkdir -p "${cache:h}"
+    "$cmd" completion zsh >"$cache.$$" && mv "$cache.$$" "$cache" ||
+      { rm -f "$cache.$$"; return 1; }
+  fi
+  source "$cache"
+}
+
 # kubernetes
 if command -v kubectl &>/dev/null; then
-  source <(kubectl completion zsh)
+  _cached_completion kubectl
   alias k="kubectl"
   compdef __start_kubectl k
 
@@ -51,7 +67,7 @@ if command -v kubectl &>/dev/null; then
 fi
 
 if command -v helm &>/dev/null; then
-  source <(helm completion zsh)
+  _cached_completion helm
 fi
 
 alias kctx="kubectx"
