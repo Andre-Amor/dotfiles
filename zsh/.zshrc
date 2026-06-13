@@ -31,6 +31,7 @@ alias c="clear"
 
 # claude
 alias cc="claude"
+alias ccr="claude code --resume"
 
 # fzf & ripgrep
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
