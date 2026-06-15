@@ -90,6 +90,38 @@ autoload -Uz add-zsh-hook
 add-zsh-hook chpwd _precommit_autoinstall
 _precommit_autoinstall
 
+# Keep Git ahead and behind prompt indicators fresh without blocking `cd`.
+typeset -g GIT_AUTOFETCH_TTL_SECONDS=${GIT_AUTOFETCH_TTL_SECONDS:-900}
+_git_autofetch_on_chpwd() {
+  git rev-parse --is-inside-work-tree &>/dev/null || return
+
+  local root cache_dir safe_root stamp_file last_fetch now
+  root="$(git rev-parse --show-toplevel 2>/dev/null)" || return
+  git -C "$root" rev-parse --abbrev-ref --symbolic-full-name @{u} &>/dev/null || return
+
+  cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/git-autofetch"
+  mkdir -p "$cache_dir" 2>/dev/null || return
+
+  safe_root="${root//\//_}"
+  safe_root="${safe_root//:/_}"
+  stamp_file="$cache_dir/${safe_root}.stamp"
+
+  zmodload zsh/datetime
+  zmodload -F zsh/stat b:zstat
+  now=$EPOCHSECONDS
+  last_fetch=0
+  [[ ! -f "$stamp_file" ]] || last_fetch=$(zstat +mtime "$stamp_file" 2>/dev/null || echo 0)
+  (( now - last_fetch >= GIT_AUTOFETCH_TTL_SECONDS )) || return
+
+  touch "$stamp_file" 2>/dev/null || return
+  (
+    GIT_TERMINAL_PROMPT=0 git -C "$root" fetch --quiet --prune --no-tags </dev/null ||
+      print -u2 "git autofetch failed: $root"
+  ) &!
+}
+add-zsh-hook chpwd _git_autofetch_on_chpwd
+_git_autofetch_on_chpwd
+
 alias pc="pre-commit run --all-files"
 alias gl="git log"
 alias gds="git diff --staged"
