@@ -9,7 +9,7 @@ Written for macOS and Ubuntu.
 
 ```
 sudo apt update && sudo apt install -y git
-git clone --recurse-submodules https://github.com/Andrie-Amor/dotfiles.git ~/.dotfiles
+git clone --recurse-submodules https://github.com/Andre-Amor/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ./install.sh
 ```
