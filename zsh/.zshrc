@@ -37,9 +37,6 @@ alias ccr="claude code --resume"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
-# zoxide
-eval "$(zoxide init zsh)"
-
 # Source a command's completion script from a cache file instead of
 # regenerating it on every shell start. Compares against the command's
 # symlink rather than its target because brew rewrites the symlink on
